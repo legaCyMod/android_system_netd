@@ -27,8 +27,10 @@
 #define AP_DRIVER_START_DELAY	800000
 
 class SoftapController {
+#ifdef BLADE_SOFTAP
     char mBuf[SOFTAP_MAX_BUFFER_SIZE];
     char mIface[IFNAMSIZ];
+#endif
     pid_t mPid;
     int mSock;
 
@@ -38,8 +40,10 @@ public:
     SoftapController();
     virtual ~SoftapController();
 
+#ifdef BLADE_SOFTAP
     int startDriver(char *iface);
     int stopDriver(char *iface);
+#endif
     int startSoftap();
     int stopSoftap();
     bool isSoftapStarted();

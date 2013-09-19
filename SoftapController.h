@@ -32,8 +32,8 @@ public:
     virtual ~SoftapController();
 
 #ifdef BLADE_SOFTAP
-    int startDriver(char *iface);
-    int stopDriver(char *iface);
+    int startDriver(const char *iface);
+    int stopDriver(const char *iface);
 #endif
     int startSoftap();
     int stopSoftap();

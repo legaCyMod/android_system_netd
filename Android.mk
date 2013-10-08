@@ -22,7 +22,7 @@ LOCAL_SRC_FILES:=                                      \
                   TetherController.cpp                 \
                   oem_iptables_hook.cpp                \
                   main.cpp                             \
-
+                  RouteController.cpp
 
 LOCAL_MODULE:= netd
 
@@ -68,6 +68,13 @@ endif
 ifeq ($(BOARD_HAVE_BLUETOOTH),true)
   LOCAL_SHARED_LIBRARIES := $(LOCAL_SHARED_LIBRARIES) libbluedroid
   LOCAL_CFLAGS := $(LOCAL_CFLAGS) -DHAVE_BLUETOOTH
+endif
+
+ifeq ($(BOARD_HAS_QCOM_WLAN), true)
+  LOCAL_SRC_FILES += QualcommSoftapCmd.cpp
+  LOCAL_CFLAGS += -DQCOM_WLAN
+  LOCAL_SHARED_LIBRARIES += libqsap_sdk
+  LOCAL_C_INCLUDES += $(LOCAL_PATH)/../qcom/softap/sdk/
 endif
 
 include $(BUILD_EXECUTABLE)
